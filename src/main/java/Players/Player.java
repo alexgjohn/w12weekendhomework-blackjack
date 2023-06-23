@@ -42,6 +42,9 @@ public class Player {
         for (Card card:this.hand){
             total += card.getNumberValue();
         }
+        if (total > 21){
+            this.goBust();
+        }
         return total;
     }
 }

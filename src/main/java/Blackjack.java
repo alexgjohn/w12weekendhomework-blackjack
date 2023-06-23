@@ -28,4 +28,19 @@ public class Blackjack {
     public ArrayList<Player> getPlayers() {
         return this.players;
     }
+
+    public void addPlayer(Player playerToAdd) {
+        this.players.add(playerToAdd);
+    }
+
+    public void shuffle() {
+        this.deck.shuffle();
+    }
+
+    public void dealAllPlayersTwoCards() {
+        for(Player player:this.players){
+            this.dealer.dealToPlayer(player, this.deck.returnTopCard());
+            this.dealer.dealToPlayer(player, this.deck.returnTopCard());
+        }
+    }
 }

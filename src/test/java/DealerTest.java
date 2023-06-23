@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class DealerTest {
 
@@ -50,7 +51,16 @@ public class DealerTest {
     }
 
     @Test
+    public void dealerWillNotDealToBustedPlayer(){
+        player1.goBust();
+        dealer.dealToPlayer(player1, sixOfClubs);
+        assertEquals(0, player1.getHandTotal());
+    }
+
+    @Test
     public void dealerCanShuffleDeck(){
         dealer.shuffleDeck(deck);
+        Card topCard = deck.returnTopCard();
+        assertFalse(topCard.getNumberValue() == 1);
     }
 }

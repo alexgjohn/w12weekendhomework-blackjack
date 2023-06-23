@@ -39,5 +39,35 @@ public class BlackjackTest {
         assertEquals(0, blackjack.getPlayers().size());
     }
 
+    @Test
+    public void blackjackCanAddPlayers(){
+        blackjack.addPlayer(player1);
+        assertEquals(1, blackjack.getPlayers().size());
+    }
+
+    @Test
+    public void deckCanBeShuffledAtStartOfGame(){
+        blackjack.shuffle();
+        int expected = blackjack.getDeck().returnTopCard().getNumberValue();
+        assertFalse(expected == 1);
+    }
+
+    @Test
+    public void cardIsRemovedFromDeckWhenDealt(){
+        blackjack.getDeck().returnTopCard();
+        int numberOfCardsInDeck = blackjack.getDeck().getCards().size();
+        assertEquals(51, numberOfCardsInDeck);
+    }
+
+    @Test
+    public void playersAreDealtTwoCardsAtStartOfGame(){
+        blackjack.addPlayer(player1);
+        blackjack.addPlayer(player2);
+        blackjack.dealAllPlayersTwoCards();
+        assertEquals(2, player1.getHand().size());
+        assertEquals(2, player2.getHand().size());
+    }
+
+
 
 }

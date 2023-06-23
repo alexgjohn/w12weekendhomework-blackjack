@@ -28,6 +28,13 @@ public class Dealer {
     }
 
     public void dealToPlayer(Player player, Card cardDealt) {
-        player.addCardToHand(cardDealt);
+        if(!player.isBust()){
+            player.addCardToHand(cardDealt);
+            player.getHandTotal();
+        }
+    }
+
+    public void shuffleDeck(Deck deck) {
+        deck.shuffle();
     }
 }

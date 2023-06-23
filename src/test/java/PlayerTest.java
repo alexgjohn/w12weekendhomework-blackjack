@@ -12,12 +12,14 @@ public class PlayerTest {
     private Player player;
     private Card sixOfClubs;
     private Card queenOfDiamonds;
+    private Card queenOfHearts;
 
 
     @Before
     public void before(){
         sixOfClubs = new Card(CardType.SIX, "Clubs");
         queenOfDiamonds = new Card(CardType.QUEEN, "Diamonds");
+        queenOfHearts = new Card(CardType.QUEEN, "Hearts");
         player = new Player("Grant");
     }
 
@@ -54,5 +56,14 @@ public class PlayerTest {
         player.addCardToHand(sixOfClubs);
         player.addCardToHand(queenOfDiamonds);
         assertEquals(16, player.getHandTotal());
+    }
+
+    @Test
+    public void playerGoesBustIfTotalExceedsTwentyOne(){
+        player.addCardToHand(sixOfClubs);
+        player.addCardToHand(queenOfDiamonds);
+        player.addCardToHand(queenOfHearts);
+        player.getHandTotal();
+        assertEquals(true, player.isBust());
     }
 }
