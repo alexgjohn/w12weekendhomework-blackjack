@@ -11,7 +11,6 @@ public class DealerTest {
 
     private Dealer dealer;
     private Player player1;
-    private Player player2;
     private Card sixOfClubs;
     private Card queenOfDiamonds;
 
@@ -21,7 +20,6 @@ public class DealerTest {
         queenOfDiamonds = new Card(CardType.QUEEN, "Diamonds");
         dealer = new Dealer();
         player1 = new Player("Grant");
-        player2 = new Player("Ally");
     }
 
     @Test
