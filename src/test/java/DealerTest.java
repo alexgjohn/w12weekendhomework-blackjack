@@ -13,6 +13,7 @@ public class DealerTest {
     private Player player1;
     private Card sixOfClubs;
     private Card queenOfDiamonds;
+    private Deck deck;
 
     @Before
     public void before(){
@@ -20,6 +21,7 @@ public class DealerTest {
         queenOfDiamonds = new Card(CardType.QUEEN, "Diamonds");
         dealer = new Dealer();
         player1 = new Player("Grant");
+        deck = new Deck();
     }
 
     @Test
@@ -45,5 +47,10 @@ public class DealerTest {
         dealer.dealToPlayer(player1, sixOfClubs);
         assertEquals(1, player1.getHand().size());
         assertEquals(6, player1.getHandTotal());
+    }
+
+    @Test
+    public void dealerCanShuffleDeck(){
+        dealer.shuffleDeck(deck);
     }
 }

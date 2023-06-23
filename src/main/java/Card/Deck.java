@@ -1,6 +1,8 @@
 package Card;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Deck {
 
@@ -30,6 +32,15 @@ public class Deck {
     private String[] getSuits() {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
         return suits;
+    }
+
+    public Card returnTopCard() {
+        Card topCard = cards.remove(0);
+        return topCard;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(this.cards);
     }
 }
 

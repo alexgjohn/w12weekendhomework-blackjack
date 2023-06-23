@@ -1,6 +1,10 @@
 import Card.*;
 import Players.*;
 import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class BlackjackTest {
 
@@ -20,5 +24,20 @@ public class BlackjackTest {
         blackjack = new Blackjack(deck, dealer);
     }
 
-    
+    @Test
+    public void blackjackHasDealer(){
+        assertEquals(dealer, blackjack.getDealer());
+    }
+
+    @Test
+    public void blackjackHasDeck(){
+        assertEquals(deck, blackjack.getDeck());
+    }
+
+    @Test
+    public void blackjackHasEmptyListOfPlayers(){
+        assertEquals(0, blackjack.getPlayers().size());
+    }
+
+
 }

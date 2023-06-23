@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class DeckTest {
 
@@ -18,5 +18,16 @@ public class DeckTest {
     @Test
     public void deckHasFiftyTwoCards(){
         assertEquals(52, deck.getCards().size());
+    }
+
+    @Test
+    public void deckHasAceAsTopCard(){
+        assertTrue(deck.returnTopCard().getNumberValue() == 1);
+    }
+
+    @Test
+    public void deckCanBeShuffled(){
+        deck.shuffle();
+        assertFalse(deck.returnTopCard().getNumberValue() == 1);
     }
 }
