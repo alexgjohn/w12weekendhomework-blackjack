@@ -43,4 +43,14 @@ public class Blackjack {
             this.dealer.dealToPlayer(player, this.deck.returnTopCard());
         }
     }
+
+    public void dealerDealsSelfTwoCards() {
+        this.dealer.dealToSelf(this.deck.returnTopCard());
+        this.dealer.dealToSelf(this.deck.returnTopCard());
+    }
+
+    public void dealFirstHand() {
+        this.dealAllPlayersTwoCards();
+        this.dealerDealsSelfTwoCards();
+    }
 }

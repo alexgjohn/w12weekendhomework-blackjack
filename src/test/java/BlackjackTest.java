@@ -55,7 +55,7 @@ public class BlackjackTest {
     @Test
     public void cardIsRemovedFromDeckWhenDealt(){
         blackjack.getDeck().returnTopCard();
-        int numberOfCardsInDeck = blackjack.getDeck().getCards().size();
+        int numberOfCardsInDeck = deck.getCards().size();
         assertEquals(51, numberOfCardsInDeck);
     }
 
@@ -66,6 +66,22 @@ public class BlackjackTest {
         blackjack.dealAllPlayersTwoCards();
         assertEquals(2, player1.getHand().size());
         assertEquals(2, player2.getHand().size());
+    }
+
+    @Test
+    public void dealerDealsSelfTwoCardsAtStartOfGame(){
+        blackjack.dealerDealsSelfTwoCards();
+        assertEquals(2, dealer.getHand().size());
+    }
+
+    @Test
+    public void blackjackCanDealFirstHand(){
+        blackjack.addPlayer(player1);
+        blackjack.addPlayer(player2);
+        blackjack.dealFirstHand();
+        assertEquals(2, player1.getHand().size());
+        assertEquals(2, player2.getHand().size());
+        assertEquals(2, dealer.getHand().size());
     }
 
 
