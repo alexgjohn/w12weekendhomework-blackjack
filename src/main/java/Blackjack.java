@@ -2,7 +2,6 @@ import Card.*;
 import Players.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Blackjack {
 
@@ -10,7 +9,7 @@ public class Blackjack {
 
     private Dealer dealer;
     private ArrayList<Player> players;
-    private Player winner;
+    private Person winner;
 
     public Blackjack(Deck deck, Dealer dealer){
         this.deck = deck;
@@ -56,7 +55,7 @@ public class Blackjack {
         this.dealerDealsSelfTwoCards();
     }
 
-    public Player getWinner() {
+    public Person getWinner() {
         return this.winner;
     }
 
@@ -65,25 +64,62 @@ public class Blackjack {
     }
 
     public void playerTwistOrStick(Player player){
-        while (player.getHandTotal() <= 14){
+        while (player.getHandTotal() <= 16){
             this.dealer.dealToPlayer(player, this.deck.returnTopCard());
         }
     }
 
     public void dealerTwistOrStick(){
-        while (this.dealer.getHandTotal() <= 11){
+        while (this.dealer.getHandTotal() <= 16){
             this.dealer.dealToSelf(this.deck.returnTopCard());
         }
     }
 
-    public String playGame(){
+
+    public void determineWinner() {
+        ArrayList<Person> remainingPlayersInGame = new ArrayList<>();
+        if (!this.dealer.isBust()){
+            remainingPlayersInGame.add(dealer);
+        }
+        for (Player player:this.players){
+            if (!player.isBust()){
+                remainingPlayersInGame.add(player);
+            }
+        }
+        if (remainingPlayersInGame.size() != 0){
+            this.winner = remainingPlayersInGame.get(0);
+        }
+        for (Person remainingPlayer:remainingPlayersInGame){
+            if (remainingPlayer.getHandTotal() > this.winner.getHandTotal()){
+                this.winner = remainingPlayer;
+            }
+        }
+    }
+
+    public String declareWinner() {
+        String declaration = null;
+        if (this.winner == this.dealer){
+            declaration = String.format("Dealer wins with a score of %d!", this.getDealer().getHandTotal());
+        } else if (this.winner != null){
+            for (Player player:this.players){
+                if (player == this.winner){
+                    declaration = String.format("%s wins with a score of %d!", player.getName(), player.getHandTotal());
+                }
+            }
+        } else {
+            declaration = "Everyone went bust. Nobody wins!";
+        }
+        return declaration;
+    }
+
+    public void playGame(){
         this.shuffle();
         this.dealFirstHand();
         for (Player player:this.players){
             this.playerTwistOrStick(player);
         }
         this.dealerTwistOrStick();
-        String endgame = "Game over!";
-        return endgame;
+        this.determineWinner();
+        System.out.println(this.declareWinner());
     }
 }

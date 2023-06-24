@@ -13,6 +13,7 @@ public class Dealer extends Person{
 
     public void dealToSelf(Card cardDealt) {
         super.getHand().add(cardDealt);
+        super.getHandTotal();
     }
 
 

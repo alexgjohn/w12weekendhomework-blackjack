@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class DealerTest {
 
@@ -14,12 +13,14 @@ public class DealerTest {
     private Player player1;
     private Card sixOfClubs;
     private Card queenOfDiamonds;
+    private Card queenOfHearts;
     private Deck deck;
 
     @Before
     public void before(){
         sixOfClubs = new Card(CardType.SIX, "Clubs");
         queenOfDiamonds = new Card(CardType.QUEEN, "Diamonds");
+        queenOfHearts = new Card(CardType.QUEEN, "Hearts");
         dealer = new Dealer();
         player1 = new Player("Grant");
         deck = new Deck();
@@ -62,5 +63,19 @@ public class DealerTest {
         dealer.shuffleDeck(deck);
         Card topCard = deck.returnTopCard();
         assertFalse(topCard.getNumberValue() == 1);
+    }
+
+    @Test
+    public void dealerCanGoBust(){
+        dealer.goBust();
+        assertTrue(dealer.isBust());
+    }
+
+    @Test
+    public void dealerGoesBustIfCardTotalExceedsTwentyOne(){
+        dealer.dealToSelf(queenOfDiamonds);
+        dealer.dealToSelf(queenOfHearts);
+        dealer.dealToSelf(sixOfClubs);
+        assertTrue(dealer.isBust());
     }
 }
