@@ -14,8 +14,8 @@ public class Ace extends Card{
     }
 
 
-    public void changeValueToEleven() {
-        this.numberValue = 11;
+    public void changeValueToOne() {
+        this.numberValue = 1;
     }
 
 }

@@ -20,8 +20,8 @@ public class AceTest {
     }
 
     @Test
-    public void aceHasNumberValueOfOne(){
-        assertEquals(1, aceOfSpades.getNumberValue());
+    public void aceHasNumberValueOfEleven(){
+        assertEquals(11, aceOfSpades.getNumberValue());
     }
 
     @Test
@@ -30,8 +30,8 @@ public class AceTest {
     }
 
     @Test
-    public void aceCanChangeValue(){
-        aceOfSpades.changeValueToEleven();
-        assertEquals(11, aceOfSpades.getNumberValue());
+    public void aceCanChangeValueToOne(){
+        aceOfSpades.changeValueToOne();
+        assertEquals(1, aceOfSpades.getNumberValue());
     }
 }
