@@ -32,11 +32,19 @@ public abstract class Person {
 
     public int getHandTotal() {
         int total = 0;
+        boolean handContainsAce = false;
         for (Card card:this.hand){
             total += card.getNumberValue();
         }
-        if (total > 21){
+        for (Card card:this.hand){
+            if (card.getCardType() == card.getCardType().ACE) {
+                handContainsAce = true;
+            }
+        }
+        if (total > 21 && handContainsAce != true){
             this.goBust();
+        } else if (total > 21 && handContainsAce) {
+            total -= 10;
         }
         return total;
     }

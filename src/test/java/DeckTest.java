@@ -22,7 +22,7 @@ public class DeckTest {
 
     @Test
     public void deckHasAceAsTopCard(){
-        assertTrue(deck.returnTopCard().getNumberValue() == 1);
+        assertTrue(deck.returnTopCard().getNumberValue() == 11);
     }
 
     @Test
