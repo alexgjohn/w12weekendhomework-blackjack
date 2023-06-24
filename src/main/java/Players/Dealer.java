@@ -3,29 +3,18 @@ package Players;
 import Card.*;
 import java.util.ArrayList;
 
-public class Dealer {
+public class Dealer extends Person{
 
-    private ArrayList<Card> hand;
 
     public Dealer(){
-        this.hand = new ArrayList<>();
+        super();
     }
 
-    public ArrayList<Card> getHand() {
-        return this.hand;
-    }
 
     public void dealToSelf(Card cardDealt) {
-        this.hand.add(cardDealt);
+        super.getHand().add(cardDealt);
     }
 
-    public int getHandTotal() {
-        int total = 0;
-        for (Card card:this.hand){
-            total += card.getNumberValue();
-        }
-        return total;
-    }
 
     public void dealToPlayer(Player player, Card cardDealt) {
         if(!player.isBust()){

@@ -3,8 +3,7 @@ import Players.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class BlackjackTest {
 
@@ -85,5 +84,42 @@ public class BlackjackTest {
     }
 
 
+    @Test
+    public void blackjackStartsWithNoWinner(){
+        assertEquals(null, blackjack.getWinner());
+    }
+
+    @Test
+    public void blackjackCanSelectWinner(){
+        blackjack.addPlayer(player1);
+        blackjack.addPlayer(player2);
+        blackjack.setWinner(player1);
+        assertEquals(player1, blackjack.getWinner());
+    }
+
+    @Test
+    public void playerFinalTotalWillAlwaysExceedFourteen(){
+        blackjack.addPlayer(player1);
+        blackjack.addPlayer(player2);
+        blackjack.playGame();
+        assertTrue(player1.getHandTotal() > 14);
+        assertTrue(player2.getHandTotal() > 14);
+    }
+
+    @Test
+    public void dealerFinalTotalWillAlwaysExceedEleven(){
+        blackjack.addPlayer(player1);
+        blackjack.addPlayer(player2);
+        blackjack.playGame();
+        assertTrue(dealer.getHandTotal() > 11);
+    }
+
+//    @Test
+//    public void dealerFinalTotalWillNeverExceedTwentyOne(){
+//        blackjack.addPlayer(player1);
+//        blackjack.addPlayer(player2);
+//        blackjack.playGame();
+//        assertFalse(dealer.getHandTotal() > 21);
+//    }
 
 }
